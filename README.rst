@@ -282,6 +282,8 @@ Choose from the list of available rules:
     the opening brace should be placed on "next" or "same" line after
     classy constructs (non-anonymous classes, interfaces, traits, methods
     and non-lambda functions); defaults to ``'next'``
+  - ``preserve_empty_lines`` (``bool``): whether empty lines near opening and
+    closing braces should be preserved; defaults to ``false``
 
 * **cast_spaces** [@Symfony]
 

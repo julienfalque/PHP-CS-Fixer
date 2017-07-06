@@ -27,6 +27,7 @@ final class BracesFixerTest extends AbstractFixerTestCase
     private static $configurationOopPositionSameLine = ['position_after_functions_and_oop_constructs' => 'same'];
     private static $configurationCtrlStructPositionNextLine = ['position_after_control_structures' => 'next'];
     private static $configurationAnonymousPositionNextLine = ['position_after_anonymous_constructs' => 'next'];
+    private static $configurationPreserveEmptyLines = ['preserve_empty_lines' => true];
 
     public function testInvalidConfigurationClassyConstructs()
     {
@@ -457,6 +458,24 @@ final class BracesFixerTest extends AbstractFixerTestCase
 }',
                 null,
                 self::$configurationOopPositionSameLine,
+            ],
+            [
+                '<?php
+if (true) {
+
+    foo();
+
+    if (true) {
+
+        bar();
+
+    }
+
+    baz();
+
+}',
+                null,
+                self::$configurationPreserveEmptyLines,
             ],
         ];
     }

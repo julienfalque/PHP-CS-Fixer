@@ -172,6 +172,10 @@ class Foo
                 ->setAllowedValues([self::LINE_NEXT, self::LINE_SAME])
                 ->setDefault(self::LINE_SAME)
                 ->getOption(),
+            (new FixerOptionBuilder('preserve_empty_lines', 'Whether empty lines near opening and closing braces should be preserved.'))
+                ->setAllowedTypes(['bool'])
+                ->setDefault(false)
+                ->getOption(),
         ]);
     }
 
@@ -346,7 +350,13 @@ class Foo
             $indent = $this->detectIndent($tokens, $index);
 
             // fix indent near closing brace
-            $tokens->ensureWhitespaceAtIndex($endBraceIndex - 1, 1, $this->whitespacesConfig->getLineEnding().$indent);
+            if ($this->configuration['preserve_empty_lines'] && $tokens[$endBraceIndex - 1]->isWhitespace()) {
+                $whitespace = preg_replace('/\R[ \t]*/', $this->whitespacesConfig->getLineEnding(), $tokens[$endBraceIndex - 1]->getContent());
+            } else {
+                $whitespace = $this->whitespacesConfig->getLineEnding();
+            }
+
+            $tokens->ensureWhitespaceAtIndex($endBraceIndex - 1, 1, $whitespace.$indent);
 
             // fix indent between braces
             $lastCommaIndex = $tokens->getPrevTokenOfKind($endBraceIndex - 1, [';', '}']);
@@ -440,7 +450,18 @@ class Foo
                     || !($nextToken->isWhitespace() && $nextToken->isWhitespace(" \t"))
                     && 1 === substr_count($nextToken->getContent(), "\n") // preserve blank lines
                 ) {
-                    $tokens->ensureWhitespaceAtIndex($startBraceIndex + 1, 0, $this->whitespacesConfig->getLineEnding().$indent.$this->whitespacesConfig->getIndent());
+                    if (
+                        $this->configuration['preserve_empty_lines']
+                        && $tokens[$startBraceIndex + 1]->isWhitespace()
+                        && preg_match('/\R/', $tokens[$startBraceIndex + 1]->getContent())
+                    ) {
+                        $whitespace = preg_replace('/\R[ \t]*/', $this->whitespacesConfig->getLineEnding(), $tokens[$startBraceIndex + 1]->getContent());
+                    } else {
+                        $whitespace = $this->whitespacesConfig->getLineEnding();
+                    }
+
+                    $tokens->ensureWhitespaceAtIndex($startBraceIndex + 1, 0, $whitespace.$indent.$this->whitespacesConfig->getIndent());
+
                 }
             }
 
