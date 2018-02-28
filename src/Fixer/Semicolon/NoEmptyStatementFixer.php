@@ -59,7 +59,7 @@ final class NoEmptyStatementFixer extends AbstractFixer
     protected function applyFix(\SplFileInfo $file, Tokens $tokens)
     {
         for ($index = 0, $count = $tokens->count(); $index < $count; ++$index) {
-            // skip T_FOR parenthesis to ignore duplicated `;` like `for ($i = 1; ; ++$i) {...}`
+            // skip T_FOR parenthesis to ignore duplicated `;` like `for ($i = 1;; ++$i) {...}`
             if ($tokens[$index]->isGivenKind(T_FOR)) {
                 $index = $tokens->findBlockEnd(Tokens::BLOCK_TYPE_PARENTHESIS_BRACE, $tokens->getNextMeaningfulToken($index)) + 1;
 
