@@ -72,7 +72,8 @@ final class PhpUnitInternalClassFixer extends AbstractFixer implements Whitespac
                 ->setAllowedValues([(new AllowedValueSubset($types))])
                 ->setAllowedTypes(['array'])
                 ->setDefault(['normal', 'final'])
-                ->getOption(),
+                ->getOption()
+            ,
         ]);
     }
 

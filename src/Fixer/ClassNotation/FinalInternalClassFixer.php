@@ -155,7 +155,8 @@ final class FinalInternalClassFixer extends AbstractFixer implements Configurati
                 ->setAllowedValues($annotationsAsserts)
                 ->setDefault(['@internal'])
                 ->setNormalizer($annotationsNormalizer)
-                ->getOption(),
+                ->getOption()
+            ,
             (new AliasedFixerOptionBuilder(
                 new FixerOptionBuilder('annotation_black_list', 'Class level annotations tags that must be omitted to fix the class, even if all of the white list ones are used as well. (case insensitive)'),
                 'annotation-black-list'
@@ -170,14 +171,16 @@ final class FinalInternalClassFixer extends AbstractFixer implements Configurati
                     '@Mapping\Entity',
                 ])
                 ->setNormalizer($annotationsNormalizer)
-                ->getOption(),
+                ->getOption()
+            ,
             (new AliasedFixerOptionBuilder(
                 new FixerOptionBuilder('consider_absent_docblock_as_internal_class', 'Should classes without any DocBlock be fixed to final?'),
                 'consider-absent-docblock-as-internal-class'
             ))
                 ->setAllowedTypes(['bool'])
                 ->setDefault(false)
-                ->getOption(),
+                ->getOption()
+            ,
         ]);
     }
 

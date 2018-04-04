@@ -198,7 +198,8 @@ $f = fn () => null;
             (new FixerOptionBuilder('closure_function_spacing', 'Spacing to use before open parenthesis for closures.'))
                 ->setDefault(self::SPACING_ONE)
                 ->setAllowedValues($this->supportedSpacings)
-                ->getOption(),
+                ->getOption()
+            ,
         ]);
     }
 

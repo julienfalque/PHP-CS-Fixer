@@ -112,7 +112,8 @@ function foo() {}
             (new FixerOptionBuilder('annotations', 'List of annotations to remove, e.g. `["author"]`.'))
                 ->setAllowedTypes(['array'])
                 ->setDefault([])
-                ->getOption(),
+                ->getOption()
+            ,
         ], $this->getName());
     }
 }

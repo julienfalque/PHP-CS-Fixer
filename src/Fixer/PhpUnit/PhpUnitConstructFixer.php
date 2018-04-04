@@ -130,7 +130,8 @@ $this->assertNotSame(null, $d);
                     'assertNotEquals',
                     'assertNotSame',
                 ])
-                ->getOption(),
+                ->getOption()
+            ,
         ], $this->getName());
     }
 

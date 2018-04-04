@@ -84,7 +84,8 @@ final class ConstantCaseFixer extends AbstractFixer implements ConfigurationDefi
             (new FixerOptionBuilder('case', 'Whether to use the `upper` or `lower` case syntax.'))
                 ->setAllowedValues(['upper', 'lower'])
                 ->setDefault('lower')
-                ->getOption(),
+                ->getOption()
+            ,
         ]);
     }
 

@@ -96,7 +96,8 @@ class Sample
                     return $value;
                 })
                 ->setDefault(['property', 'method'])
-                ->getOption(),
+                ->getOption()
+            ,
         ], $this->getName());
     }
 

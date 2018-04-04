@@ -240,7 +240,8 @@ $this->assertTrue(is_readable($a));
                 ])
                 ->setDefault(null)
                 ->setDeprecationMessage('Use option `target` instead.')
-                ->getOption(),
+                ->getOption()
+            ,
             (new FixerOptionBuilder('target', 'Target version of PHPUnit.'))
                 ->setAllowedTypes(['string'])
                 ->setAllowedValues([
@@ -251,7 +252,8 @@ $this->assertTrue(is_readable($a));
                     PhpUnitTargetVersion::VERSION_NEWEST,
                 ])
                 ->setDefault(PhpUnitTargetVersion::VERSION_5_0) // @TODO 3.x: change to `VERSION_NEWEST`
-                ->getOption(),
+                ->getOption()
+            ,
         ], $this->getName());
     }
 

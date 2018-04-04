@@ -148,7 +148,8 @@ final class MyTest extends \PHPUnit_Framework_TestCase
                     'assertEquals',
                     'assertNotEquals',
                 ])
-                ->getOption(),
+                ->getOption()
+            ,
         ], $this->getName());
     }
 }

@@ -280,7 +280,8 @@ $foo = \json_encode($bar, JSON_PRESERVE_ZERO_FRACTION | JSON_PRETTY_PRINT);
             (new FixerOptionBuilder('default', 'Default fix strategy.'))
                 ->setDefault(self::SINGLE_SPACE)
                 ->setAllowedValues(self::$allowedValues)
-                ->getOption(),
+                ->getOption()
+            ,
             (new FixerOptionBuilder('operators', 'Dictionary of `binary operator` => `fix strategy` values that differ from the default strategy.'))
                 ->setAllowedTypes(['array'])
                 ->setAllowedValues([static function ($option) {
@@ -310,18 +311,21 @@ $foo = \json_encode($bar, JSON_PRESERVE_ZERO_FRACTION | JSON_PRETTY_PRINT);
                     return true;
                 }])
                 ->setDefault([])
-                ->getOption(),
+                ->getOption()
+            ,
             // add deprecated options as BC layer
             (new FixerOptionBuilder('align_double_arrow', 'Whether to apply, remove or ignore double arrows alignment.'))
                 ->setDefault(false)
                 ->setAllowedValues([true, false, null])
                 ->setDeprecationMessage('Use options `operators` and `default` instead.')
-                ->getOption(),
+                ->getOption()
+            ,
             (new FixerOptionBuilder('align_equals', 'Whether to apply, remove or ignore equals alignment.'))
                 ->setDefault(false)
                 ->setAllowedValues([true, false, null])
                 ->setDeprecationMessage('Use options `operators` and `default` instead.')
-                ->getOption(),
+                ->getOption()
+            ,
         ]);
     }
 

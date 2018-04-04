@@ -133,7 +133,6 @@ final class RuleSet implements RuleSetInterface
             'no_unneeded_curly_braces' => ['namespaces' => true],
             'no_unset_cast' => true,
             'no_unused_imports' => true,
-            'no_whitespace_before_comma_in_array' => true,
             'no_whitespace_in_blank_line' => true,
             'normalize_index_brace' => true,
             'object_operator_without_whitespace' => true,
@@ -197,6 +196,10 @@ final class RuleSet implements RuleSetInterface
             'trim_array_spaces' => true,
             'unary_operator_spaces' => true,
             'whitespace_after_comma_in_array' => true,
+            'whitespace_before_statement_end' => [
+                'comma_strategy' => 'no_whitespace',
+                'semicolon_strategy' => 'none',
+            ],
             'yoda_style' => true,
         ],
         '@Symfony:risky' => [
@@ -286,7 +289,6 @@ final class RuleSet implements RuleSetInterface
             'method_argument_space' => ['on_multiline' => 'ensure_fully_multiline'],
             'method_chaining_indentation' => true,
             'multiline_comment_opening_closing' => true,
-            'multiline_whitespace_before_semicolons' => ['strategy' => 'new_line_for_chained_calls'],
             'no_extra_blank_lines' => ['tokens' => [
                 'break',
                 'case',
@@ -319,6 +321,7 @@ final class RuleSet implements RuleSetInterface
             'simple_to_complex_string_variable' => true,
             'single_line_comment_style' => true,
             'single_line_throw' => false,
+            'whitespace_before_statement_end' => true,
         ],
         '@PhpCsFixer:risky' => [
             '@Symfony:risky' => true,

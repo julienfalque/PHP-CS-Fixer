@@ -189,7 +189,8 @@ abstract class AbstractDoctrineAnnotationFixer extends AbstractFixer implements 
                     'fixme',
                     'override',
                 ])
-                ->getOption(),
+                ->getOption()
+            ,
         ]);
     }
 

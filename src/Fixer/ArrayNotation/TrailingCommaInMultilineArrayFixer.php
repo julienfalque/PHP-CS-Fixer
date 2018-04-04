@@ -109,7 +109,8 @@ SAMPLE
 
                     return $value;
                 })
-                ->getOption(),
+                ->getOption()
+            ,
         ]);
     }
 

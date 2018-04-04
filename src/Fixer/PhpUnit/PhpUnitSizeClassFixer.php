@@ -73,7 +73,8 @@ final class PhpUnitSizeClassFixer extends AbstractFixer implements WhitespacesAw
             (new FixerOptionBuilder('group', 'Define a specific group to be used in case no group is already in use'))
                 ->setAllowedValues(['small', 'medium', 'large'])
                 ->setDefault('small')
-                ->getOption(),
+                ->getOption()
+            ,
         ]);
     }
 

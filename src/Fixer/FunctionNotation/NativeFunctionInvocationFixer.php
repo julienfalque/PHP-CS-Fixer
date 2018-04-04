@@ -227,7 +227,8 @@ $c = get_class($d);
                     return true;
                 }])
                 ->setDefault([])
-                ->getOption(),
+                ->getOption()
+            ,
             (new FixerOptionBuilder('include', 'List of function names or sets to fix. Defined sets are `@internal` (all native functions), `@all` (all global functions) and `@compiler_optimized` (functions that are specially optimized by Zend).'))
                 ->setAllowedTypes(['array'])
                 ->setAllowedValues([static function (array $value) {
@@ -253,15 +254,18 @@ $c = get_class($d);
                     return true;
                 }])
                 ->setDefault([self::SET_INTERNAL])
-                ->getOption(),
+                ->getOption()
+            ,
             (new FixerOptionBuilder('scope', 'Only fix function calls that are made within a namespace or fix all.'))
                 ->setAllowedValues(['all', 'namespaced'])
                 ->setDefault('all')
-                ->getOption(),
+                ->getOption()
+            ,
             (new FixerOptionBuilder('strict', 'Whether leading `\` of function call not meant to have it should be removed.'))
                 ->setAllowedTypes(['bool'])
                 ->setDefault(false) // @TODO: 3.0 change to true as default
-                ->getOption(),
+                ->getOption()
+            ,
         ]);
     }
 

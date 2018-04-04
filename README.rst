@@ -971,10 +971,11 @@ Choose from the list of available rules:
   with a single asterisk, after the opening slash. Both must end with a
   single asterisk before the closing slash.
 
-* **multiline_whitespace_before_semicolons** [@PhpCsFixer]
+* **multiline_whitespace_before_semicolons**
 
   Forbid multi-line whitespace before the closing semicolon or move the
-  semicolon to the new line for chained calls.
+  semicolon to the new line for chained calls. DEPRECATED: use
+  ``whitespace_before_statement_end`` instead.
 
   Configuration options:
 
@@ -1298,9 +1299,10 @@ Choose from the list of available rules:
   There should not be an empty ``return`` statement at the end of a
   function.
 
-* **no_whitespace_before_comma_in_array** [@Symfony, @PhpCsFixer]
+* **no_whitespace_before_comma_in_array**
 
   In array declaration, there MUST NOT be a whitespace before each comma.
+  DEPRECATED: use ``whitespace_before_statement_end`` instead.
 
   Configuration options:
 
@@ -2079,6 +2081,20 @@ Choose from the list of available rules:
 * **whitespace_after_comma_in_array** [@Symfony, @PhpCsFixer]
 
   In array declaration, there MUST be a whitespace after each comma.
+
+* **whitespace_before_statement_end** [@Symfony, @PhpCsFixer]
+
+  Forbid multi-line whitespace before a statement end (comma or semicolon)
+  or moves it to the next line for multiline statements.
+
+  Configuration options:
+
+  - ``comma_strategy`` (``'new_line_for_multiline_statement'``, ``'no_whitespace'``,
+    ``'none'``): strategy to apply to comma; defaults to
+    ``'new_line_for_multiline_statement'``
+  - ``semicolon_strategy`` (``'new_line_for_multiline_statement'``, ``'no_whitespace'``,
+    ``'none'``): strategy to apply to semicolon; defaults to
+    ``'new_line_for_multiline_statement'``
 
 * **yoda_style** [@Symfony, @PhpCsFixer]
 

@@ -161,7 +161,8 @@ final class RandomApiMigrationFixer extends AbstractFunctionReferenceFixer imple
                     'rand' => 'mt_rand',
                     'srand' => 'mt_srand',
                 ])
-                ->getOption(),
+                ->getOption()
+            ,
         ], $this->getName());
     }
 }
