@@ -330,10 +330,18 @@ Choose from the list of available rules:
     statements which must be preceded by an empty line; defaults to
     ``['break', 'continue', 'declare', 'return', 'throw', 'try']``
 
-* **braces** [@PSR2, @Symfony, @PhpCsFixer]
+* **blank_lines_inside_block** [@Symfony, @PhpCsFixer]
+
+  There must not be blank lines at start and end of braces blocks.
+
+* **braces**
 
   The body of each structure MUST be enclosed by braces. Braces should be
   properly placed. Body of braces should be properly indented.
+  DEPRECATED: use ``control_structure_braces``, ``blank_lines_inside_block``,
+  ``curly_braces_position``, ``control_structure_continuation``,
+  ``declare_braces``, ``no_multiple_statements_per_line`` and
+  ``statement_indentation`` instead.
 
   Configuration options:
 
@@ -442,11 +450,58 @@ Choose from the list of available rules:
   - ``case`` (``'lower'``, ``'upper'``): whether to use the ``upper`` or ``lower`` case
     syntax; defaults to ``'lower'``
 
+* **control_structure_braces** [@PSR2, @Symfony, @PhpCsFixer]
+
+  The body of each control structure MUST be enclosed by braces.
+
+* **control_structure_continuation** [@PSR2, @Symfony, @PhpCsFixer]
+
+  Control structure continuation keyword must be on the configured line.
+
+  Configuration options:
+
+  - ``keyword_position`` (``'next_line'``, ``'same_line'``): the position of the keyword
+    that continues the control structure; defaults to ``'same_line'``
+
+* **curly_braces_position** [@PSR2, @Symfony, @PhpCsFixer]
+
+  Curly braces must be placed as configured.
+
+  Configuration options:
+
+  - ``allow_single_line_anonymous_functions`` (``bool``): allow anonymous functions
+    to have opening and closing braces on the same line; defaults to ``true``
+  - ``allow_single_line_empty_anonymous_classes`` (``bool``): allow anonymous
+    classes to have opening and closing braces on the same line; defaults
+    to ``true``
+  - ``anonymous_classes_opening_brace``
+    (``'next_line_unless_newline_at_signature_end'``, ``'same_line'``): the
+    position of the opening brace of anonymous classes body; defaults to
+    ``'same_line'``
+  - ``anonymous_functions_opening_brace``
+    (``'next_line_unless_newline_at_signature_end'``, ``'same_line'``): the
+    position of the opening brace of anonymous functions body; defaults to
+    ``'same_line'``
+  - ``classes_opening_brace`` (``'next_line_unless_newline_at_signature_end'``,
+    ``'same_line'``): the position of the opening brace of classes body;
+    defaults to ``'next_line_unless_newline_at_signature_end'``
+  - ``control_structures_opening_brace``
+    (``'next_line_unless_newline_at_signature_end'``, ``'same_line'``): the
+    position of the opening brace of control structures body; defaults to
+    ``'same_line'``
+  - ``functions_opening_brace`` (``'next_line_unless_newline_at_signature_end'``,
+    ``'same_line'``): the position of the opening brace of functions body;
+    defaults to ``'next_line_unless_newline_at_signature_end'``
+
 * **date_time_immutable**
 
   Class ``DateTimeImmutable`` should be used instead of ``DateTime``.
 
   *Risky rule: risky when the code relies on modifying ``DateTime`` objects or if any of the ``date_create*`` functions are overridden.*
+
+* **declare_braces** [@Symfony, @PhpCsFixer]
+
+  There must not be spaces around ``declare`` statement braces.
 
 * **declare_equal_normalize** [@Symfony, @PhpCsFixer]
 
@@ -1139,6 +1194,10 @@ Choose from the list of available rules:
 
   Multi-line whitespace before closing semicolon are prohibited.
   DEPRECATED: use ``multiline_whitespace_before_semicolons`` instead.
+
+* **no_multiple_statements_per_line** [@PSR2, @Symfony, @PhpCsFixer]
+
+  There must not be more than one statement per line.
 
 * **no_null_property_initialization** [@PhpCsFixer]
 
@@ -1962,6 +2021,10 @@ Choose from the list of available rules:
 * **standardize_not_equals** [@Symfony, @PhpCsFixer]
 
   Replace all ``<>`` with ``!=``.
+
+* **statement_indentation** [@PSR2, @Symfony, @PhpCsFixer]
+
+  Each statement must be indented.
 
 * **static_lambda**
 
