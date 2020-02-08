@@ -95,8 +95,22 @@ final class FixerFactory
         if (null === $builtInFixers) {
             $builtInFixers = [];
 
+            $finder = SymfonyFinder::create()->files()->in(__DIR__.'/Fixer');
+
+            foreach ([
+                'BlankLinesInsideBlockFixer.php',
+                'ControlStructureBracesFixer.php',
+                'ControlStructureContinuationFixer.php',
+                'CurlyBracesPositionFixer.php',
+                'DeclareBracesFixer.php',
+                'NoMultipleStatementsPerLineFixer.php',
+                'StatementIndentationFixer.php',
+            ] as $internalFixerFiles) {
+                $finder->notName($internalFixerFiles);
+            }
+
             /** @var SplFileInfo $file */
-            foreach (SymfonyFinder::create()->files()->in(__DIR__.'/Fixer') as $file) {
+            foreach ($finder as $file) {
                 $relativeNamespace = $file->getRelativePath();
                 $fixerClass = 'PhpCsFixer\\Fixer\\'.($relativeNamespace ? $relativeNamespace.'\\' : '').$file->getBasename('.php');
                 if ('Fixer' === substr($fixerClass, -5)) {
