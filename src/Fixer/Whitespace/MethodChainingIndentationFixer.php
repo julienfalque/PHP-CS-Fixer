@@ -39,17 +39,6 @@ final class MethodChainingIndentationFixer extends AbstractFixer implements Whit
 
     /**
      * {@inheritdoc}
-     *
-     * Must run before ArrayIndentationFixer.
-     * Must run after BracesFixer.
-     */
-    public function getPriority()
-    {
-        return -29;
-    }
-
-    /**
-     * {@inheritdoc}
      */
     public function isCandidate(Tokens $tokens)
     {
@@ -86,6 +75,33 @@ final class MethodChainingIndentationFixer extends AbstractFixer implements Whit
             $expectedIndent = $this->getExpectedIndentAt($tokens, $index);
             if ($currentIndent !== $expectedIndent) {
                 $tokens[$index - 1] = new Token([T_WHITESPACE, $lineEnding.$expectedIndent]);
+            }
+
+            $endParenthesisIndex = $tokens->findBlockEnd(
+                Tokens::BLOCK_TYPE_PARENTHESIS_BRACE,
+                $tokens->getNextTokenOfKind($index, ['('])
+            );
+
+            for ($searchIndex = $index + 1; $searchIndex < $endParenthesisIndex; ++$searchIndex) {
+                $searchToken = $tokens[$searchIndex];
+
+                if (!$searchToken->isWhitespace()) {
+                    continue;
+                }
+
+                $content = $searchToken->getContent();
+
+                if (!Preg::match('/\R/', $content)) {
+                    continue;
+                }
+
+                $content = Preg::replace(
+                    '/(\R)'.$currentIndent.'(\h*)$/D',
+                    '$1'.$expectedIndent.'$2',
+                    $content
+                );
+
+                $tokens[$searchIndex] = new Token([$searchToken->getId(), $content]);
             }
         }
     }

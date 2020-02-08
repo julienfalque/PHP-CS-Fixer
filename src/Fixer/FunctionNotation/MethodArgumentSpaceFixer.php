@@ -128,7 +128,7 @@ SAMPLE
     /**
      * {@inheritdoc}
      *
-     * Must run after BracesFixer, CombineNestedDirnameFixer, ImplodeCallFixer, PowToExponentiationFixer.
+     * Must run after CombineNestedDirnameFixer, ImplodeCallFixer, PowToExponentiationFixer.
      */
     public function getPriority()
     {

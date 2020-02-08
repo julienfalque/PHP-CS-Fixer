@@ -64,6 +64,16 @@ SAMPLE
 
     /**
      * {@inheritdoc}
+     *
+     * Must run after BracesFixer.
+     */
+    public function getPriority()
+    {
+        return -26;
+    }
+
+    /**
+     * {@inheritdoc}
      */
     public function isCandidate(Tokens $tokens)
     {
