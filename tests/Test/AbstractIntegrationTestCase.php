@@ -344,6 +344,7 @@ abstract class AbstractIntegrationTestCase extends TestCase
 
         return FixerFactory::create()
             ->registerBuiltInFixers()
+            ->registerHiddenFixers()
             ->useRuleSet($case->getRuleset())
             ->setWhitespacesConfig(
                 new WhitespacesFixerConfig($config['indent'], $config['lineEnding'])

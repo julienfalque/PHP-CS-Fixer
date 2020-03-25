@@ -54,6 +54,16 @@ final class ControlStructureBracesFixer extends AbstractFixer
 
     /**
      * {@inheritdoc}
+     *
+     * Must run before BlankLinesInsideBlockFixer, ControlStructureContinuationFixer, CurlyBracesPositionFixer.
+     */
+    public function getPriority()
+    {
+        return 1;
+    }
+
+    /**
+     * {@inheritdoc}
      */
     protected function applyFix(\SplFileInfo $file, Tokens $tokens)
     {

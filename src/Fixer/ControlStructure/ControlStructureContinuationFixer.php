@@ -75,6 +75,16 @@ if ($baz == true) {
 
     /**
      * {@inheritdoc}
+     *
+     * Must run after ControlStructureBracesFixer.
+     */
+    public function getPriority()
+    {
+        return parent::getPriority();
+    }
+
+    /**
+     * {@inheritdoc}
      */
     protected function createConfigurationDefinition()
     {

@@ -60,6 +60,17 @@ else {
 
     /**
      * {@inheritdoc}
+     *
+     * Must run before HeredocIndentationFixer.
+     * Must run after ClassAttributesSeparationFixer, MethodSeparationFixer.
+     */
+    public function getPriority()
+    {
+        return parent::getPriority();
+    }
+
+    /**
+     * {@inheritdoc}
      */
     public function isCandidate(Tokens $tokens)
     {

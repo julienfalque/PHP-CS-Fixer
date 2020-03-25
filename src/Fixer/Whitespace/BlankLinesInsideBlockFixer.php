@@ -70,6 +70,16 @@ class Foo {
         return $tokens->isTokenKindFound('{');
     }
 
+    /**
+     * {@inheritdoc}
+     *
+     * Must run after ControlStructureBracesFixer.
+     */
+    public function getPriority()
+    {
+        return parent::getPriority();
+    }
+
     protected function applyFix(\SplFileInfo $file, Tokens $tokens)
     {
         foreach ($tokens as $index => $token) {

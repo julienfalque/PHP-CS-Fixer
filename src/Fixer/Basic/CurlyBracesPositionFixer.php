@@ -142,6 +142,16 @@ $bar = function () { $result = true;
 
     /**
      * {@inheritdoc}
+     *
+     * Must run after ControlStructureBracesFixer.
+     */
+    public function getPriority()
+    {
+        return parent::getPriority();
+    }
+
+    /**
+     * {@inheritdoc}
      */
     protected function applyFix(\SplFileInfo $file, Tokens $tokens)
     {
