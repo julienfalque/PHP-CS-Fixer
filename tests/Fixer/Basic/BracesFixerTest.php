@@ -791,6 +791,14 @@ echo 2;
 <?php } ?>
 ',
             ],
+            [
+                '<?php
+do {
+    foo();
+} // comment
+while (false);
+',
+            ],
         ];
     }
 

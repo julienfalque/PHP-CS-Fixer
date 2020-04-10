@@ -204,5 +204,56 @@ final class ControlStructureContinuationFixerTest extends AbstractFixerTestCase
                 }',
             ['keyword_position' => 'next_line'],
         ];
+
+        yield 'else with comment after closing brace' => [
+            '<?php
+                if ($foo) {
+                    foo();
+                } // comment
+                else {
+                    bar();
+                }',
+        ];
+
+        yield 'elseif with comment after closing brace' => [
+            '<?php
+                if ($foo) {
+                    foo();
+                } // comment
+                elseif ($bar) {
+                    bar();
+                }',
+        ];
+
+        yield 'else if with comment after closing brace' => [
+            '<?php
+                if ($foo) {
+                    foo();
+                } // comment
+                else if ($bar) {
+                    bar();
+                }',
+        ];
+
+        yield 'do while with comment after closing brace' => [
+            '<?php
+                do {
+                    foo();
+                } // comment
+                while (false);',
+        ];
+
+        yield 'try catch finally with comment after closing brace' => [
+            '<?php
+                try {
+                    foo();
+                } // comment
+                catch (Throwable $e) {
+                    bar();
+                } // comment
+                finally {
+                    baz();
+                }',
+        ];
     }
 }
