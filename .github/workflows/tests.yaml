@@ -1,0 +1,29 @@
+name: Tests
+
+on:
+  push:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/cache@v2
+        id: docker-layers-cache
+        with:
+          path: /tmp/docker-layers.tar
+          key: docker-layers-${{ hashFiles('docker/**', 'docker-compose.yml') }}-2
+
+      - run: docker load < /tmp/docker-layers.tar
+        if: steps.docker-layers-cache.outputs.cache-hit
+
+      - run: docker-compose build php-7.4
+
+      - run: docker-compose run --rm --no-deps --user "$(id --user):$(id --group)" php-7.4 composer update --no-progress
+
+      - run: docker-compose run --rm --no-deps --user "$(id --user):$(id --group)" php-7.4 vendor/bin/phpunit
+
+      - run: docker save php-cs-fixer_php-7.4:latest > /tmp/docker-layers.tar
+        if: '!steps.docker-layers-cache.outputs.cache-hit'
